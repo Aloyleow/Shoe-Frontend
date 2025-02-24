@@ -1,11 +1,19 @@
-const uploadShoe = async () => {
+const uploadShoe = async (shoeData: UploadShoe, imageFile?: File) => {
 
   try {
+
+    const formData = new FormData();
+
+    formData.append("shoedata", JSON.stringify(shoeData))
+
+    if (imageFile) {
+      formData.append("imageAWS", imageFile)
+    }
 
     const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/upload`, {
 
       method: "POST",
-      headers: {"Content-Type": "application/json"},
+      body: formData,
       
     });
 
@@ -15,7 +23,7 @@ const uploadShoe = async () => {
       throw new Error(json.error);
     }
 
-    return json as UploadShoe;
+    return json;
    
   } catch (error) {
 

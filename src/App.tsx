@@ -37,7 +37,7 @@ function App() {
     }
     loadData()
 
-  },[shoes])
+  },[])
 
   
   return (

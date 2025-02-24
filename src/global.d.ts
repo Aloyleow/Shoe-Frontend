@@ -18,7 +18,7 @@ declare global {
     colour: string,
     miscellaneous: string,
     costprice: number,
-    picture: any,
+    picture: string,
   }[];
 
   type UploadShoe = {
@@ -31,4 +31,14 @@ declare global {
     costprice: number,
     picture: boolean,
   };
+
+  type DisplayShoeType = {
+    typeid: number,
+    typename: string,
+  }[];
+
+  type DisplayShoeBrand = {
+    brandid: number,
+    brandname: string,
+  }[]
 }
