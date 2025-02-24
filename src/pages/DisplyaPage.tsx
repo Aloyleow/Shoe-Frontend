@@ -11,8 +11,8 @@ const DisplayPage: React.FC<DisplayPageProps> = ({ shoes }) => {
     <>
       <Container>
         <Row>
-          {shoes.map((obj) => (
-            <Col xs={6} md={4} lg={3}>
+          {shoes.map((obj, index) => (
+            <Col xs={6} md={4} lg={3} key={index}>
               <div>
                 <Image 
                   src={`${obj.picture === "none" ? "/steps-icon.svg" : obj.picture}`} 

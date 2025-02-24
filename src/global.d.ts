@@ -20,4 +20,15 @@ declare global {
     costprice: number,
     picture: any,
   }[];
+
+  type UploadShoe = {
+    name: string,
+    typeid: number,
+    brandid: number,
+    sizeid: number,
+    colour: string,
+    miscellaneous: string,
+    costprice: number,
+    picture: boolean,
+  };
 }

@@ -3,6 +3,7 @@ import Navigation from "./components/Navigation"
 import DisplayPage from "./pages/DisplyaPage"
 import { useState, useEffect } from "react"
 import displayShoes from "./services/displayShoesService";
+import AddShoePage from "./pages/AddShoePage";
 
 function App() {
   const [shoes, setShoes] = useState<DisplayShoes>([])
@@ -44,6 +45,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/" element={<DisplayPage shoes={shoes}/>} />
+        <Route path="/addshoe" element={<AddShoePage/>} />
       </Routes>
 
     </>
