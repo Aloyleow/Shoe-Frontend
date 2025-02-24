@@ -1,19 +1,13 @@
-enum Country {
-  "US",
-  "UK",
-  "EURO"
-}
-
 export {};
 
 declare global {
- 
+
   type DisplayShoes = {
     shoesid: number,
     name: string,
     type: string,
     brand: string,
-    country: Country,
+    country: string,
     number: number,
     colour: string,
     miscellaneous: string,
@@ -40,5 +34,11 @@ declare global {
   type DisplayShoeBrand = {
     brandid: number,
     brandname: string,
+  }[]
+
+  type DisplayShoeSize = {
+    sizeid: number,
+    sizecountry: Country,
+    sizenumber: number
   }[]
 }
