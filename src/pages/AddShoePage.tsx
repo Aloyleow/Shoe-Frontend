@@ -1,11 +1,13 @@
-import { useState } from "react"
-import { Container } from "react-bootstrap";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import React, { useState } from "react"
+import Container from "react-bootstrap/Container";
 import AddShoeForm from "../components/AddShoeForm";
 
 
-const AddShoePage = () => {
+type AddShoePageProps = {
+  loadDisplay: () => Promise<void>;
+}
+
+const AddShoePage: React.FC<AddShoePageProps> = ({ loadDisplay }) => {
   const [shoeData, setShoeData] = useState<UploadShoe>({
     name: "",
     typeid: 0,
@@ -17,12 +19,10 @@ const AddShoePage = () => {
     picture: false,
   })
 
-  console.log(shoeData)
-
   return (
     <>
       <Container>
-        <AddShoeForm setShoeData={setShoeData} shoeData={shoeData}/>
+        <AddShoeForm setShoeData={setShoeData} shoeData={shoeData} loadDisplay={loadDisplay}/>
       </Container>
     </>
   )

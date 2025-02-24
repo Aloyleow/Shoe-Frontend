@@ -17,9 +17,9 @@ type ShoeSizeData = {
 const SsizeSelect: React.FC<SsizeSelectProps> = ({ setShoeData, shoeData }) => {
   const [shoeSizes, setShoeSizes] = useState<DisplayShoeSize>()
   const [showAddSize, setShowAddSize] = useState<boolean>(false);
-  const [newSize, setNewSize] = useState({
+  const [newSize, setNewSize] = useState<ShoeSizeData>({
     sizecountry: "",
-    sizenumber: "",
+    sizenumber: 0,
   })
 
   const loadData = async () => {
@@ -68,12 +68,7 @@ const SsizeSelect: React.FC<SsizeSelectProps> = ({ setShoeData, shoeData }) => {
 
     try {
 
-      const changeData: ShoeSizeData = {
-        sizecountry: newSize.sizecountry,
-        sizenumber: parseFloat(newSize.sizenumber)
-      }
-
-      await addShoeSize(changeData);
+      await addShoeSize(newSize);
       setShowAddSize(false);
       await loadData();
 
@@ -122,8 +117,8 @@ const SsizeSelect: React.FC<SsizeSelectProps> = ({ setShoeData, shoeData }) => {
           <Form.Control
             type="number"
             step={0.1}
-            value={newSize.sizenumber}
-            onChange={(event) => setNewSize({ ...newSize, sizenumber: event.target.value })}
+            onChange={(event) => 
+              setNewSize({ ...newSize, sizenumber: parseFloat(parseFloat(event.target.value).toFixed(1)) })}
           />
           <Form.Text className="text-muted">
             Eg. 8.5

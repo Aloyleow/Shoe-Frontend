@@ -4,48 +4,49 @@ import DisplayPage from "./pages/DisplyaPage"
 import { useState, useEffect } from "react"
 import displayShoes from "./services/displayShoesService";
 import AddShoePage from "./pages/AddShoePage";
+import SingleShoePage from "./pages/SingleShoePage";
 
 function App() {
   const [shoes, setShoes] = useState<DisplayShoes>([])
 
-  useEffect(() => {
+  const loadDisplay = async () => {
 
-    const loadData = async() => {
+    try {
 
-      try {
+      const retrieveData: DisplayShoes = await displayShoes();
+      setShoes(retrieveData)
 
-        const retrieveData: DisplayShoes = await displayShoes();
-        setShoes(retrieveData)
+    } catch (error) {
 
-      } catch (error) {
+      if (error instanceof TypeError) {
 
-        if (error instanceof TypeError) {
+        console.error("Server Error, please contact admin");
 
-          console.error("Server Error, please contact admin");
+      } else if (error instanceof Error) {
 
-        } else if (error instanceof Error) {
+        console.error(`${error.message}`);
 
-          console.error(`${error.message}`);
+      } else {
 
-        } else {
+        console.error("Client Error");
 
-          console.error("Client Error");
-
-        }
-        
       }
+      
     }
-    loadData()
+  }
+  
 
+  useEffect(() => {
+    loadDisplay()
   },[])
 
-  
   return (
     <>
       <Navigation />
       <Routes>
-        <Route path="/" element={<DisplayPage shoes={shoes}/>} />
-        <Route path="/addshoe" element={<AddShoePage/>} />
+        <Route path="/" element={<DisplayPage shoes={shoes} />} />
+        <Route path="/addshoe" element={<AddShoePage loadDisplay={loadDisplay} />} />
+        <Route path="/shoe/:shoesid" element={<SingleShoePage loadDisplay={loadDisplay} />} />
       </Routes>
 
     </>
