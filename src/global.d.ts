@@ -1,4 +1,4 @@
-export {};
+export { };
 
 declare global {
 
@@ -15,6 +15,20 @@ declare global {
     picture: string,
   }[];
 
+  type DisplaySingle = {
+    shoesid: number,
+    name: string,
+    type: string,
+    brand: string,
+    country: string,
+    number: number,
+    colour: string,
+    miscellaneous: string,
+    costprice: number,
+    picture: string,
+  };
+
+
   type UploadShoe = {
     name: string,
     typeid: number,
@@ -25,6 +39,7 @@ declare global {
     costprice: number,
     picture: boolean,
   };
+
 
   type DisplayShoeType = {
     typeid: number,
@@ -41,4 +56,8 @@ declare global {
     sizecountry: Country,
     sizenumber: number
   }[]
+
+  type NukeShoe = {
+    shoesid: number
+  };
 }

@@ -46,7 +46,7 @@ function App() {
       <Routes>
         <Route path="/" element={<DisplayPage shoes={shoes} />} />
         <Route path="/addshoe" element={<AddShoePage loadDisplay={loadDisplay} />} />
-        <Route path="/shoe/:shoesid" element={<SingleShoePage loadDisplay={loadDisplay} />} />
+        <Route path="/shoe/:shoesid" element={<SingleShoePage loadDisplay={loadDisplay} shoes={shoes}/>} />
       </Routes>
 
     </>
