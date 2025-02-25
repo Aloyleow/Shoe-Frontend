@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom"
-import Navigation from "./components/Navigation"
+import NavigationBar from "./components/NavigationBar"
 import DisplayPage from "./pages/DisplyaPage"
 import { useState, useEffect } from "react"
 import displayShoes from "./services/displayShoesService";
@@ -44,7 +44,7 @@ function App() {
 
   return (
     <>
-      <Navigation />
+      <NavigationBar />
       <Routes>
         <Route path="/" element={<DisplayPage shoes={shoes} />} />
         <Route path="/addshoe" element={<AddShoePage loadDisplay={loadDisplay} />} />
