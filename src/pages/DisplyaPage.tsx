@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -10,19 +10,34 @@ type DisplayPageProps = {
 };
 
 const DisplayPage: React.FC<DisplayPageProps> = ({ shoes }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [search, setSearch] = useState("");
+
+  const filterShoes = shoes.filter(shoe => (
+    (shoe.name.toLowerCase().includes(search.toLowerCase()) ||
+      shoe.brand.toLowerCase().includes(search.toLowerCase()))
+  ))
 
   return (
     <>
       <Container>
         <Row>
-          {shoes.map((obj, index) => (
+          <Col xs={12}>
+            <label>Search me</label><br></br>
+            <input
+              type="text"
+              onChange={(event) => setSearch(event.target.value)}
+            />
+          </Col>
+        </Row>
+        <Row>
+          {filterShoes.map((obj, index) => (
             <Col xs={6} md={4} lg={3} key={index} onClick={() => navigate(`/shoe/${obj.shoesid}`)}>
               <div>
-                <Image 
-                  src={`${obj.picture === "none" ? "/steps-icon.svg" : obj.picture}`} 
-                  fluid 
-                  thumbnail 
+                <Image
+                  src={`${obj.picture === "none" ? "/steps-icon.svg" : obj.picture}`}
+                  fluid
+                  thumbnail
                 />
               </div>
               <div>

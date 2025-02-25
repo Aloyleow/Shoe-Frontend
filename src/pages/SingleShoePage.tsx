@@ -30,7 +30,7 @@ const SingleShoePage: React.FC<SingleShoePageProps> = ({ shoes, loadDisplay }) =
     <>
       <Container>
         <Row>      
-            <Col xs={6} md={4} lg={3}>
+            <Col xs={12} md={6}>
               <div>
                 <Image 
                   src={`${singleShoe?.picture === "none" ? "/steps-icon.svg" : singleShoe?.picture}`} 
