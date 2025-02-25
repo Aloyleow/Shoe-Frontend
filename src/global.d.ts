@@ -80,4 +80,11 @@ declare global {
     sizecountry: string,
     sizenumber: number,
   };
+
+  type EditShoe = {
+    name: string,
+    colour: string,
+    miscellaneous: string,
+    shoesid: number
+  };
 }

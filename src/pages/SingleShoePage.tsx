@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import { useParams } from "react-router-dom";
 import DeleteShoe from "../components/DeleteShoe";
+import EditShoeForm from "../components/EditShoeForm";
 
 type SingleShoePageProps = {
   shoes: DisplayShoes;
@@ -13,42 +14,37 @@ type SingleShoePageProps = {
 
 const SingleShoePage: React.FC<SingleShoePageProps> = ({ shoes, loadDisplay }) => {
   const { shoesid } = useParams()
-  const [singleShoe, setSingleShoe] = useState<DisplaySingle>()
 
-  useEffect(() => {
-    
-    for (const obj of shoes) {
-      if (shoesid === obj.shoesid.toString()){
-        setSingleShoe(obj)
-        break
-      }
-    }
+  const filterParams = shoes.filter(shoe => (
+    (shoesid === shoe.shoesid.toString())
+  ))
 
-  },[])
-  
   return (
     <>
       <Container>
-        <Row>      
-            <Col xs={12} md={6}>
+        {filterParams.map((obj, index) => (
+          <Row key={index}>
+            <Col xs={6} md={4} lg={3}>
               <div>
-                <Image 
-                  src={`${singleShoe?.picture === "none" ? "/steps-icon.svg" : singleShoe?.picture}`} 
-                  fluid 
-                  thumbnail 
+                <Image
+                  src={`${obj.picture === "none" ? "/steps-icon.svg" : obj.picture}`}
+                  fluid
+                  thumbnail
                 />
               </div>
               <div>
-                <p>{singleShoe?.name}</p>
-                <p>{singleShoe?.type}</p>
-                <p>{singleShoe?.brand}</p>
-                <p>${singleShoe?.costprice}</p>
-                <p>{singleShoe?.miscellaneous}</p>
-                <p>Size {singleShoe?.country}{singleShoe?.number}</p>
+                <p>{obj.name}</p>
+                <p>{obj.type}</p>
+                <p>{obj.brand}</p>
+                <p>${obj.costprice}</p>
+                <p>{obj.miscellaneous}</p>
+                <p>Size {obj.country}{obj.number}</p>
               </div>
-              <DeleteShoe singleShoe={singleShoe} loadDisplay={loadDisplay}/>
+              <DeleteShoe singleShoe={obj.shoesid} loadDisplay={loadDisplay} />
             </Col>
-        </Row>
+            <EditShoeForm obj={obj} loadDisplay={loadDisplay}/>
+          </Row>
+        ))}
       </Container>
     </>
   )

@@ -5,17 +5,17 @@ import { Button } from "react-bootstrap";
 import deleteShoe from "../services/deleteShoeService";
 
 type DeleteShoeProps = {
-  singleShoe?: DisplaySingle;
+  singleShoe?: number;
   loadDisplay: () => Promise<void>;
 }
 
 const DeleteShoe: React.FC<DeleteShoeProps> = ({ singleShoe, loadDisplay }) => {
-  const [spinner, setSpinner] = useState<boolean>(false)
-  const navigate = useNavigate()
+  const [spinner, setSpinner] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const handleOnClick = async () => {
     
-    const params = singleShoe?.shoesid
+    const params = singleShoe;
     if(!params){
       return (
         <h1>Sorry no shoe!</h1>
