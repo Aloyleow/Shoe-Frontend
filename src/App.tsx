@@ -6,9 +6,11 @@ import displayShoes from "./services/displayShoesService";
 import AddShoePage from "./pages/AddShoePage";
 import SingleShoePage from "./pages/SingleShoePage";
 import CustomizePage from "./pages/CustomizePage";
+import { Spinner } from "react-bootstrap";
 
 function App() {
   const [shoes, setShoes] = useState<DisplayShoes>([])
+  const [loading, setLoading] = useState<boolean>(true)
 
   const loadDisplay = async () => {
 
@@ -16,6 +18,7 @@ function App() {
 
       const retrieveData: DisplayShoes = await displayShoes();
       setShoes(retrieveData)
+      setLoading(false)
 
     } catch (error) {
 
@@ -44,6 +47,12 @@ function App() {
   return (
     <div>
       <NavigationBar />
+      {loading &&
+      <div>
+        <h1>Hold On Tight..backend server loading</h1>
+        <Spinner animation="border" variant="primary"></Spinner>
+      </div>
+      }
       <Routes>
         <Route path="/" element={<DisplayPage shoes={shoes} />} />
         <Route path="/addshoe" element={<AddShoePage loadDisplay={loadDisplay} />} />
