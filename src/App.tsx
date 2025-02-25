@@ -7,8 +7,6 @@ import AddShoePage from "./pages/AddShoePage";
 import SingleShoePage from "./pages/SingleShoePage";
 import CustomizePage from "./pages/CustomizePage";
 
-
-
 function App() {
   const [shoes, setShoes] = useState<DisplayShoes>([])
 
