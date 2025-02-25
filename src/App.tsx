@@ -43,7 +43,7 @@ function App() {
   },[])
 
   return (
-    <>
+    <div>
       <NavigationBar />
       <Routes>
         <Route path="/" element={<DisplayPage shoes={shoes} />} />
@@ -52,7 +52,7 @@ function App() {
         <Route path="/customize" element={<CustomizePage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </>
+    </div>
   )
 }
 
