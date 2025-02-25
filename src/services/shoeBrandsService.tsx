@@ -59,7 +59,37 @@ const addShoeBrand = async (data: ShoeBrandData) => {
   }
 }
 
+const editShoeBrands = async (data: EidtShoeBrand) => {
+
+  try {
+
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/shoebrand`, {
+
+      method: "PUT",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(data)
+      
+    });
+
+    const json = await res.json();
+    
+    if (json.error) {
+      throw new Error(json.error);
+    }
+
+    return json;
+   
+  } catch (error) {
+
+    console.error(error);
+    
+    throw error;
+
+  }
+}
+
 export {
   displayShoeBrands,
-  addShoeBrand
+  addShoeBrand,
+  editShoeBrands 
 } 

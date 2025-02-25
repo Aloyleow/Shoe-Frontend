@@ -60,4 +60,24 @@ declare global {
   type NukeShoe = {
     shoesid: number
   };
+
+  type EidtShoeType = {
+    newtypename: string,
+    typeid: number,
+    typename: string,
+  };
+
+  type EidtShoeBrand = {
+    newbrandname: string,
+    brandid: number,
+    brandname: string,
+  };
+
+  type EidtShoeSize = {
+    newsizecountry: string,
+    newsizenumber: number,
+    sizeid: number,
+    sizecountry: string,
+    sizenumber: number,
+  };
 }

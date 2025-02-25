@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import displayShoes from "./services/displayShoesService";
 import AddShoePage from "./pages/AddShoePage";
 import SingleShoePage from "./pages/SingleShoePage";
+import CustomizePage from "./pages/CustomizePage";
 
 function App() {
   const [shoes, setShoes] = useState<DisplayShoes>([])
@@ -47,8 +48,8 @@ function App() {
         <Route path="/" element={<DisplayPage shoes={shoes} />} />
         <Route path="/addshoe" element={<AddShoePage loadDisplay={loadDisplay} />} />
         <Route path="/shoe/:shoesid" element={<SingleShoePage loadDisplay={loadDisplay} shoes={shoes}/>} />
+        <Route path="/customize" element={<CustomizePage />} />
       </Routes>
-
     </>
   )
 }

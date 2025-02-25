@@ -60,7 +60,37 @@ const addShoeSize = async (data: ShoeSizeData) => {
   }
 }
 
+const editShoeSizes = async (data: EidtShoeSize) => {
+
+  try {
+
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/shoesize`, {
+
+      method: "PUT",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(data)
+      
+    });
+
+    const json = await res.json();
+    
+    if (json.error) {
+      throw new Error(json.error);
+    }
+
+    return json;
+   
+  } catch (error) {
+
+    console.error(error);
+    
+    throw error;
+
+  }
+}
+
 export {
   displayShoeSizes,
-  addShoeSize
+  addShoeSize,
+  editShoeSizes
 } 
